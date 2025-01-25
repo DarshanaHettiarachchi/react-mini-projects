@@ -1,17 +1,42 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDom from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const books = [
+  {
+    author: 'Jordan Moore',
+    title: 'Interesting Facts For Curious Minds',
+    img: './images/book_1.jpg',
+    id: 1,
+  },
+  {
+    author: 'James Clear',
+    title: 'Atomic Habits',
+    img: './images/book_1.jpg',
+    id: 2,
+  },
+];
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const BookList = () => {
+  return (
+    <section className='booklist'>
+      {books.map((book) => (
+        <Book {...book} key={book.id} />
+      ))}
+    </section>
+  );
+};
+
+const Book = ({ author, title, img }) => {
+  return (
+    <article className='book'>
+      <img src={img} alt='Interesting Facts For Curious Minds' />
+      <h2>{title}</h2>
+      <h4>{author}</h4>
+    </article>
+  );
+};
+
+const root = ReactDom.createRoot(document.getElementById('root'));
+
+root.render(<BookList />);
